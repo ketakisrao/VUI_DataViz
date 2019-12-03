@@ -19,6 +19,7 @@ app.controller('vui-controller', function ($scope) {
 
         try {
             chart.geodata = am4geodata_worldHigh;
+            console.log(am4geodata_worldHigh);
         }
         catch (e) {
             chart.raiseCriticalError(new Error("Map geodata could not be loaded. Please download the latest <a href=\"https://www.amcharts.com/download/download-v4/\">amcharts geodata</a> and extract its contents into the same directory as your amCharts files."));
@@ -320,7 +321,8 @@ app.controller('vui-controller', function ($scope) {
     $scope.btnClicked = () => {
         // chart.chartContainer.background.dispatchImmediately("hit");
         // var a = document.getElementById("id-220");
-        console.log(polygonSeries._childrenByLayout[5].dispatchImmediately("hit"));
+        polygonSeries._childrenByLayout[2].dispatchImmediately("hit");
+        console.log(polygonSeries._childrenByLayout[2].properties);
     };
 
 })
