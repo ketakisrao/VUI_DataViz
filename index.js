@@ -303,7 +303,7 @@ app.controller('vui-controller', function ($scope) {
         }
         document.querySelector('#text').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
     }
-    // recognition.start();
+    recognition.start();
 
     actionChart = (query) => {
         setTimeout(function () {
