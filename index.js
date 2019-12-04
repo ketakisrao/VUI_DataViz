@@ -19,7 +19,6 @@ app.controller('vui-controller', function ($scope) {
 
         try {
             chart.geodata = am4geodata_worldHigh;
-            console.log(am4geodata_worldHigh);
         }
         catch (e) {
             chart.raiseCriticalError(new Error("Map geodata could not be loaded. Please download the latest <a href=\"https://www.amcharts.com/download/download-v4/\">amcharts geodata</a> and extract its contents into the same directory as your amCharts files."));
@@ -303,7 +302,7 @@ app.controller('vui-controller', function ($scope) {
         }
         document.querySelector('#text').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
     }
-    recognition.start();
+    // recognition.start();
 
     actionChart = (query) => {
         setTimeout(function () {
@@ -314,7 +313,8 @@ app.controller('vui-controller', function ($scope) {
         if (query.includes("hide")) {
             var n = query.indexOf("hide") + "hide".length + 1;
             var query = query.substring(n).toLowerCase();
-            //check if columns present in query and hide
+            //check if columns present in query and pseude click on them :D
+            
         }
     }
 
@@ -322,7 +322,7 @@ app.controller('vui-controller', function ($scope) {
         // chart.chartContainer.background.dispatchImmediately("hit");
         // var a = document.getElementById("id-220");
         polygonSeries._childrenByLayout[2].dispatchImmediately("hit");
-        console.log(polygonSeries._childrenByLayout[2].properties);
+        console.log(polygonSeries._childrenByLayout[2].polygon.dataItem.dataContext.id); // NL, IT, etc
     };
 
 })
