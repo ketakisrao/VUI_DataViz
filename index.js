@@ -63,7 +63,6 @@ app.controller('vui-controller', function ($scope) {
         polygonTemplate.events.on("hit", function (event) {
             event.target.zIndex = 1000000;
             selectPolygon(event.target);
-            console.log(event.target);
         })
 
         // Pie chart
@@ -163,6 +162,19 @@ app.controller('vui-controller', function ($scope) {
                 fadeOut();
                 countryLabel.hide();
                 morphedPolygon = undefined;
+                //my addition
+                chart.goHome();
+                countryLabel.text = "Select a country";
+                countryLabel.fill = am4core.color("#7678a0");
+                countryLabel.fontSize = 40;
+
+                countryLabel.hiddenState.properties.dy = 1000;
+                countryLabel.defaultState.properties.dy = 0;
+                countryLabel.valign = "middle";
+                countryLabel.align = "right";
+                countryLabel.paddingRight = 50;
+                countryLabel.hide(0);
+                countryLabel.show();
             }
         }
 
@@ -272,8 +284,28 @@ app.controller('vui-controller', function ($scope) {
 
 
 
-
-    var data = ["louis vuitton", "dolce and gabanna"]
+    //["IT", "CH", "FR", "DE", "GB", "ES", "PT", "IE", "NL", "LU", "BE", "AT", "DK"]
+    var dataHash = {
+        "italy": "IT",
+        "switzerland": "CH",
+        "france": "FR",
+        "germany": "DE",
+        "united kingdom": "GB",
+        "uk": "GB",
+        "britain": "GB",
+        "great britain": "GB",
+        "spain": "ES",
+        "portugal": "PT",
+        "ireland": "IE",
+        "netherlands": "NL",
+        "netherlands": "NL",
+        "luxembourg": "LU",
+        "belgium": "BE",
+        "austria": "AT",
+        "denmark": "DK"
+    };
+    var showKeywords = ["show", "view", "choose", "select", "pick"];
+    var clearKeywords = ["cancel", "clear", "start over", "reset"];
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     if ('SpeechRecognition' in window) {
         console.log("Speech is supported")
@@ -295,34 +327,71 @@ app.controller('vui-controller', function ($scope) {
                 recognition.stop();
 
                 //perform action on chart
-                actionChart(finalTranscript)
+                setTimeout(function () {
+                    actionChart(finalTranscript);
+                }, 800);
             } else {
                 interimTranscript += transcript;
             }
         }
         document.querySelector('#text').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
     }
-    // recognition.start();
+    recognition.start();
 
     actionChart = (query) => {
-        setTimeout(function () {
-            finalTranscript = ''
-            recognition.start();
-        }, 800);
 
-        if (query.includes("hide")) {
-            var n = query.indexOf("hide") + "hide".length + 1;
-            var query = query.substring(n).toLowerCase();
-            //check if columns present in query and pseude click on them :D
-            
+        finalTranscript = ''
+        recognition.start();
+
+        showKeywords.forEach(function (key) {
+            if (query.includes(key)) {
+                var n = query.indexOf(key) + key.length + 1; // 1 for space
+                query = query.substring(n).toLowerCase();
+                //check if columns present in query and pseude click on them :D
+                showCountry(dataHash[query]);
+            }
+        });
+
+        clearKeywords.forEach(function (key) {
+            if (query.includes(key)) {
+                clearAll();
+            }
+        });
+
+    };
+
+    // Test by text query
+    // setTimeout(function () {
+    //     actionChart("clear all");
+    // }, 5000);
+
+    function showCountry(countryCode) {
+        var id;
+        for (i = 2; i < polygonSeries._childrenByLayout.length; i++) {
+            if (polygonSeries._childrenByLayout[i].polygon.dataItem.dataContext.id == countryCode) {
+                id = i;
+                break;
+            }
         }
+        polygonSeries._childrenByLayout[id].dispatchImmediately("hit");
+    }
+
+    function clearAll() {
+        chart.chartContainer.background.dispatchImmediately("hit");
     }
 
     $scope.btnClicked = () => {
         // chart.chartContainer.background.dispatchImmediately("hit");
-        // var a = document.getElementById("id-220");
-        polygonSeries._childrenByLayout[2].dispatchImmediately("hit");
-        console.log(polygonSeries._childrenByLayout[2].polygon.dataItem.dataContext.id); // NL, IT, etc
+        // polygonSeries._childrenByLayout[2].dispatchImmediately("hit");
+        // console.log(polygonSeries._childrenByLayout[2].polygon.dataItem.dataContext.id); // NL, IT, etc
+        var id;
+        for (i = 2; i < polygonSeries._childrenByLayout.length; i++) {
+            if (polygonSeries._childrenByLayout[i].polygon.dataItem.dataContext.id == "GB") {
+                id = i;
+                break;
+            }
+        }
+        polygonSeries._childrenByLayout[i].dispatchImmediately("hit");
     };
 
 })
