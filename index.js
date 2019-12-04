@@ -304,7 +304,7 @@ app.controller('vui-controller', function ($scope) {
         "austria": "AT",
         "denmark": "DK"
     };
-    var showKeywords = ["show", "view", "choose", "select", "pick"];
+    var showKeywords = ["show", "view", "see", "choose", "select", "pick"];
     var clearKeywords = ["cancel", "clear", "start over", "reset"];
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     if ('SpeechRecognition' in window) {
