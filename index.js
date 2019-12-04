@@ -329,7 +329,7 @@ app.controller('vui-controller', function ($scope) {
                 //perform action on chart
                 setTimeout(function () {
                     actionChart(finalTranscript);
-                }, 800);
+                }, 1000);
             } else {
                 interimTranscript += transcript;
             }
@@ -384,14 +384,16 @@ app.controller('vui-controller', function ($scope) {
         // chart.chartContainer.background.dispatchImmediately("hit");
         // polygonSeries._childrenByLayout[2].dispatchImmediately("hit");
         // console.log(polygonSeries._childrenByLayout[2].polygon.dataItem.dataContext.id); // NL, IT, etc
-        var id;
-        for (i = 2; i < polygonSeries._childrenByLayout.length; i++) {
-            if (polygonSeries._childrenByLayout[i].polygon.dataItem.dataContext.id == "GB") {
-                id = i;
-                break;
-            }
-        }
-        polygonSeries._childrenByLayout[i].dispatchImmediately("hit");
+        // var id;
+        // for (i = 2; i < polygonSeries._childrenByLayout.length; i++) {
+        //     if (polygonSeries._childrenByLayout[i].polygon.dataItem.dataContext.id == "GB") {
+        //         id = i;
+        //         break;
+        //     }
+        // }
+        // polygonSeries._childrenByLayout[i].dispatchImmediately("hit");
+        recognition.stop();
+        
     };
 
 })
