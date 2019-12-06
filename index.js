@@ -300,6 +300,7 @@ app.controller('vui-controller', function ($scope) {
     };
     var showKeywords = ["show", "view", "see", "choose", "select", "pick", "how", "what", "go", "find"];
     var clearKeywords = ["cancel", "clear", "start over", "reset"];
+    var voiceFlag = true;
 
 
 
@@ -339,7 +340,8 @@ app.controller('vui-controller', function ($scope) {
     actionChart = (query) => {
 
         finalTranscript = ''
-        recognition.start();
+        if(voiceFlag)
+            recognition.start();
 
         showKeywords.forEach(function (key) {
             if (query.includes(key)) {
@@ -378,6 +380,7 @@ app.controller('vui-controller', function ($scope) {
     }
 
     $scope.btnClicked = () => {
+        voiceFlag = false;
         recognition.stop();
         document.querySelector('#btn').style.visibility = "hidden";
         document.querySelector('#text').innerHTML = "Voice stopped<br>Interact Manually";
