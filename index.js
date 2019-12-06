@@ -298,7 +298,7 @@ app.controller('vui-controller', function ($scope) {
         "Austria": "AT",
         "Denmark": "DK"
     };
-    var showKeywords = ["show", "view", "see", "choose", "select", "pick", "how", "what", "go"];
+    var showKeywords = ["show", "view", "see", "choose", "select", "pick", "how", "what", "go", "find"];
     var clearKeywords = ["cancel", "clear", "start over", "reset"];
 
 
@@ -333,7 +333,7 @@ app.controller('vui-controller', function ($scope) {
         }
         document.querySelector('#text').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
     }
-    recognition.start();
+    // recognition.start();
     
 
     actionChart = (query) => {
