@@ -333,7 +333,7 @@ app.controller('vui-controller', function ($scope) {
         }
         document.querySelector('#text').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
     }
-    // recognition.start();
+    recognition.start();
     
 
     actionChart = (query) => {
@@ -379,6 +379,7 @@ app.controller('vui-controller', function ($scope) {
 
     $scope.btnClicked = () => {
         recognition.stop();
+        document.querySelector('#text').innerHTML = "Voice stopped";
     };
 
 })

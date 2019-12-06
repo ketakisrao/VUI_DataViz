@@ -28,12 +28,35 @@
 
         .side-container p {
             color: #34495e;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         body {
             color: #2c3e50;
             text-align: center;
+        }
+
+        #text {
+            margin-top: 80px;
+            font-size: 20px;
+            min-height: 30px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 40px;
+            background-color: white;
+            border: 2px solid #2c3e50;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tags span {
+            display: inline-block;
+            padding: 2 10px;
+            margin-bottom: 5px;
+            background-color: rgba(248, 165, 194, 0.8);
+            border-radius: 5px;
         }
     </style>
 
@@ -52,18 +75,34 @@
         <div class="side-container">
             <h1>Voice for Visualisation</h1>
             <p>This interface allows you to use voice commands to manipulate the visualisation to the right.</p>
-            <p><b>Want to see the sales for a particular country?</b><br>Use commands like<br>"Show Portugal", "Choose
-                Spain", "Let's see Britain"</p>
-            <p><b>Want to reset the visualisation?</b><br>Use commands like<br>"Let's start over", "Reset" or
+            <p><b>Want to see the sales for a particular country?</b><br>Use commands like:<br>"Show Portugal", "How
+                were the sales in Spain?", "What happened in Britain"</p>
+            <p><b>Want to reset the visualisation?</b><br>Use commands like:<br>"Let's start over", "Reset" or
                 "Clear"</p>
+            <div class="tags">
+                <h3>Countries</h3>
+                <span>Italy</span>
+                <span>Switzerland</span>
+                <span>France</span>
+                <span>Britain</span>
+                <span>Spain</span>
+                <span>Portugal</span>
+                <span>Netherlands</span>
+                <span>Austria</span>
+                <span>Belgium</span>
+                <span>Denmark</span>
+                <span>Ireland</span>
+                <span>Luxembourg</span>
+                <span>Germany</span>
+            </div>
             <div id="text"></div>
-            <button ng-click="btnClicked()">Stop Voice</button>
+            <button class="btn" ng-click="btnClicked()">Stop Voice</button>
         </div>
         <div class="chart-container">
-            <h1>Sales for BMW in Europe</h1>
+            <h1>Sales for BMW in Europe 2019</h1>
             <div id="chartdiv"></div>
         </div>
-    </div>    
+    </div>
 </body>
 
 </html>
