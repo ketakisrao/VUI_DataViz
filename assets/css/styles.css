@@ -1,0 +1,53 @@
+ #chartdiv {
+            /* margin-right:  100px; */
+
+            width: 70vw;
+            height: 550px;
+        }
+
+        #main-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .side-container {
+            /* border: 1px solid black; */
+            width: 25vw;
+            padding: 0 20px;
+        }
+
+        .side-container p {
+            color: #34495e;
+            font-size: 16px;
+        }
+
+        body {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        #text {
+            margin-top: 80px;
+            font-size: 20px;
+            min-height: 30px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 40px;
+            background-color: white;
+            border: 2px solid #2c3e50;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .tags span {
+            display: inline-block;
+            padding: 2 10px;
+            margin-bottom: 5px;
+            background-color: rgba(248, 165, 194, 0.8);
+            border-radius: 5px;
+        }
+        .footer {
+            font-size: 12px;
+        }
