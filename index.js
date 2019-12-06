@@ -379,7 +379,8 @@ app.controller('vui-controller', function ($scope) {
 
     $scope.btnClicked = () => {
         recognition.stop();
-        document.querySelector('#text').innerHTML = "Voice stopped";
+        document.querySelector('#btn').style.visibility = "hidden";
+        document.querySelector('#text').innerHTML = "Voice stopped<br>Interact Manually";
     };
 
 })
