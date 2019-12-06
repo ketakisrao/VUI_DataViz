@@ -4,8 +4,7 @@ app.controller('vui-controller', function ($scope) {
 
     var chart, polygonSeries;
 
-
-
+    //AM Chart Initialization
     am4core.ready(function () {
 
         // Themes begin
@@ -119,13 +118,13 @@ app.controller('vui-controller', function ($scope) {
         var countryLabel = chart.chartContainer.createChild(am4core.Label);
         countryLabel.text = "Select a country";
         countryLabel.fill = am4core.color("#7678a0");
-        countryLabel.fontSize = 40;
+        countryLabel.fontSize = 30;
 
         countryLabel.hiddenState.properties.dy = 1000;
         countryLabel.defaultState.properties.dy = 0;
-        countryLabel.valign = "middle";
-        countryLabel.align = "right";
-        countryLabel.paddingRight = 50;
+        countryLabel.valign = "top";
+        countryLabel.align = "center";
+        // countryLabel.paddingRight = 50;
         countryLabel.hide(0);
         countryLabel.show();
 
@@ -166,13 +165,13 @@ app.controller('vui-controller', function ($scope) {
                 chart.goHome();
                 countryLabel.text = "Select a country";
                 countryLabel.fill = am4core.color("#7678a0");
-                countryLabel.fontSize = 40;
+                countryLabel.fontSize = 30;
 
                 countryLabel.hiddenState.properties.dy = 1000;
                 countryLabel.defaultState.properties.dy = 0;
-                countryLabel.valign = "middle";
-                countryLabel.align = "right";
-                countryLabel.paddingRight = 50;
+                countryLabel.valign = "top";
+                countryLabel.align = "center";
+                // countryLabel.paddingRight = 50;
                 countryLabel.hide(0);
                 countryLabel.show();
             }
@@ -279,33 +278,32 @@ app.controller('vui-controller', function ($scope) {
     }); // end am4core.ready()
 
 
-
-
-
-
-
     //["IT", "CH", "FR", "DE", "GB", "ES", "PT", "IE", "NL", "LU", "BE", "AT", "DK"]
     var dataHash = {
-        "italy": "IT",
-        "switzerland": "CH",
-        "france": "FR",
-        "germany": "DE",
-        "united kingdom": "GB",
-        "uk": "GB",
-        "britain": "GB",
-        "great britain": "GB",
-        "spain": "ES",
-        "portugal": "PT",
-        "ireland": "IE",
-        "netherlands": "NL",
-        "netherlands": "NL",
-        "luxembourg": "LU",
-        "belgium": "BE",
-        "austria": "AT",
-        "denmark": "DK"
+        "Italy": "IT",
+        "Switzerland": "CH",
+        "France": "FR",
+        "Germany": "DE",
+        "United Kingdom": "GB",
+        "UK": "GB",
+        "Britain": "GB",
+        "Great Britain": "GB",
+        "Spain": "ES",
+        "Portugal": "PT",
+        "Ireland": "IE",
+        "Netherlands": "NL",
+        "Netherland": "NL",
+        "Luxembourg": "LU",
+        "Belgium": "BE",
+        "Austria": "AT",
+        "Denmark": "DK"
     };
-    var showKeywords = ["show", "view", "see", "choose", "select", "pick", "how", "what"];
+    var showKeywords = ["show", "view", "see", "choose", "select", "pick", "how", "what", "go"];
     var clearKeywords = ["cancel", "clear", "start over", "reset"];
+
+
+
+    //Use Web Speech API to detect speech and convert it to text
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     if ('SpeechRecognition' in window) {
         console.log("Speech is supported")
@@ -315,9 +313,8 @@ app.controller('vui-controller', function ($scope) {
     let finalTranscript = '';
     let recognition = new window.SpeechRecognition();
     recognition.interimResults = true;
-    // recognition.maxAlternatives = 10;
     recognition.continuous = true;
-    recognition.lang = "en-IN"
+    // recognition.lang = "en-IN";
     recognition.onresult = (event) => {
         let interimTranscript = '';
         for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
@@ -337,6 +334,7 @@ app.controller('vui-controller', function ($scope) {
         document.querySelector('#text').innerHTML = finalTranscript + '<i style="color:#ddd;">' + interimTranscript + '</>';
     }
     recognition.start();
+    
 
     actionChart = (query) => {
 
@@ -346,14 +344,13 @@ app.controller('vui-controller', function ($scope) {
         showKeywords.forEach(function (key) {
             if (query.includes(key)) {
                 var n = query.indexOf(key) + key.length + 1; // 1 for space
-                query = query.substring(n).toLowerCase();
+                query = query.substring(n);
                 Object.keys(dataHash).forEach(function(country){
-                    //check if columns present in query and pseude click on them :D
+                    //check if columns present in query and pseude click on them
                     if (query.includes(country)) {
-                        showCountry(dataHash[country]);
+                        showCountry(dataHash[country], country);
                     }
                 });
-                
             }
         });
 
@@ -364,11 +361,6 @@ app.controller('vui-controller', function ($scope) {
         });
 
     };
-
-    // Test by text query
-    // setTimeout(function () {
-    //     actionChart("clear all");
-    // }, 5000);
 
     function showCountry(countryCode) {
         var id;
@@ -386,19 +378,7 @@ app.controller('vui-controller', function ($scope) {
     }
 
     $scope.btnClicked = () => {
-        // chart.chartContainer.background.dispatchImmediately("hit");
-        // polygonSeries._childrenByLayout[2].dispatchImmediately("hit");
-        // console.log(polygonSeries._childrenByLayout[2].polygon.dataItem.dataContext.id); // NL, IT, etc
-        // var id;
-        // for (i = 2; i < polygonSeries._childrenByLayout.length; i++) {
-        //     if (polygonSeries._childrenByLayout[i].polygon.dataItem.dataContext.id == "GB") {
-        //         id = i;
-        //         break;
-        //     }
-        // }
-        // polygonSeries._childrenByLayout[i].dispatchImmediately("hit");
         recognition.stop();
-        
     };
 
 })

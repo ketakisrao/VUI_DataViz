@@ -9,9 +9,21 @@
     <!-- Styles -->
     <style>
         #chartdiv {
-            margin-top: 100px;
-            width: 80%;
-            height: 600px;
+            /* margin-right:  100px; */
+
+            width: 70vw;
+            height: 550px;
+        }
+        #main-container {
+            display: flex;
+            justify-content: center;
+        }
+        .side-container {
+            border: 1px solid black;
+            width: 25vw;
+        }
+        body {
+            text-align: center;
         }
     </style>
 
@@ -27,11 +39,19 @@
 <body ng-app="vui" ng-controller="vui-controller">
     <!-- Chart code -->
     <script>
-        
+
     </script>
 
     <!-- HTML -->
-    <div id="chartdiv"></div>
+    
+    <div id="main-container">
+        
+        <div class="side-container"></div>
+        <div class="chart-container">
+            <h1>Sales for BMW in Europe</h1>
+            <div id="chartdiv"></div>
+        </div>
+    </div>
 
     <div id="text"></div>
     <button ng-click="btnClicked()">Stop Voice</button>
