@@ -304,7 +304,7 @@ app.controller('vui-controller', function ($scope) {
         "austria": "AT",
         "denmark": "DK"
     };
-    var showKeywords = ["show", "view", "see", "choose", "select", "pick"];
+    var showKeywords = ["show", "view", "see", "choose", "select", "pick", "how", "what"];
     var clearKeywords = ["cancel", "clear", "start over", "reset"];
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     if ('SpeechRecognition' in window) {
@@ -347,8 +347,13 @@ app.controller('vui-controller', function ($scope) {
             if (query.includes(key)) {
                 var n = query.indexOf(key) + key.length + 1; // 1 for space
                 query = query.substring(n).toLowerCase();
-                //check if columns present in query and pseude click on them :D
-                showCountry(dataHash[query]);
+                Object.keys(dataHash).forEach(function(country){
+                    //check if columns present in query and pseude click on them :D
+                    if (query.includes(country)) {
+                        showCountry(dataHash[country]);
+                    }
+                });
+                
             }
         });
 
