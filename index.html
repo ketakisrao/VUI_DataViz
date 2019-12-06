@@ -58,6 +58,9 @@
             background-color: rgba(248, 165, 194, 0.8);
             border-radius: 5px;
         }
+        .footer {
+            font-size: 10px;
+        }
     </style>
 
     <!-- Resources -->
@@ -71,7 +74,6 @@
 
 <body ng-app="vui" ng-controller="vui-controller">
     <div id="main-container">
-
         <div class="side-container">
             <h1>Voice for Visualisation</h1>
             <p>This interface allows you to use voice commands to manipulate the visualisation to the right.</p>
@@ -103,6 +105,10 @@
             <div id="chartdiv"></div>
         </div>
     </div>
+    <p class="footer"><b>Note: </b>This is made using <a
+            href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API/Using_the_Web_Speech_API">WebSpeech
+            API</a> which uses Googles speech-to-text engine to convert speech commands to text. Refer to their privacy
+        policy <a href="https://cloud.google.com/speech-to-text/docs/data-logging">here.</a></p>
 </body>
 
 </html>
