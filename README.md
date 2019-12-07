@@ -4,7 +4,8 @@ This project aims for users to use voice commands in order to manipulate viusali
 
 Here is a short video on how this app can be used: https://youtu.be/iT_po_cHJyM
 
-## Note:
-Use the latest version of Chrome or Mozilla Firefox since WebSpeech API is only supported by those
-
 Enjoy!
+
+
+#### Note:
+Use the latest version of Chrome or Mozilla Firefox since WebSpeech API is only supported by those
