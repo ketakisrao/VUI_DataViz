@@ -375,6 +375,6 @@ app.controller('vui-controller', function ($scope) {
     };
 
 
-
+    //start listening on load
     recognition.start();
 })
